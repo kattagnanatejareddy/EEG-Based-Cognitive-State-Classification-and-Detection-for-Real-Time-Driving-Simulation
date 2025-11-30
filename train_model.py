@@ -1,11 +1,4 @@
-"""
-train_model.py
----------------
-Trains and evaluates a neural network classifier
-to detect attention states (Focused / Unfocused / Drowsy)
-from preprocessed EEG data.
-"""
-
+#train_model.py
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix
@@ -14,17 +7,12 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv1D, MaxPooling1D, Flatten, Dense, Dropout, BatchNormalization
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
-
 from preprocessing import preprocess_data
 
-
 def train_eeg_model():
-    """Loads preprocessed data, builds, trains, and evaluates the model."""
     data = preprocess_data()
     X, y = data["features"], data["labels"]
-
     print(f"Features: {X.shape}, Labels: {y.shape}")
-
     # Normalize EEG features per channel
     X = (X - np.mean(X, axis=0)) / (np.std(X, axis=0) + 1e-8)
 
@@ -104,4 +92,5 @@ def train_eeg_model():
 
 
 if __name__ == "_main_":
+
     train_eeg_model()
