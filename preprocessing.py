@@ -53,10 +53,6 @@ def bandpass_filter(data, low_freq, high_freq, fs, order=4):
     b, a = butter(order, [low, high], btype='band')
     return lfilter(b, a, data)
 
-
-# =========================================================
-# Preprocessing Logic
-# =========================================================
 def preprocess_data():
     """Main preprocessing pipeline for all EEG .mat files."""
 
@@ -79,7 +75,7 @@ def preprocess_data():
 
         # Load .mat file
         mat_data = loadmat(file_path)
-        data = mat_data['o'][0][0]['data']  # Adjust 'o' if your structure differs
+        data = mat_data['o'][0][0]['data'] 
 
         # Create DataFrame
         eeg_df = pd.DataFrame(data, columns=COLUMNS)
@@ -150,11 +146,7 @@ def preprocess_data():
         "beta": beta_features,
         "labels": labels
     }
-
-
-# =========================================================
-# Script Entry Point
-# =========================================================
 if __name__ == "__main__":
     data = preprocess_data()
     print("Preprocessing completed successfully!")
+
